@@ -1,6 +1,6 @@
 
 package r_package;
-	typedef enum {write,read,write_a,read_a,w_precharge,r_precharge,w_reset,r_reset,self,refresh,activate} ram_type;
+	typedef enum {reset,write,read,write_a,read_a,pre_c,refresh,activate} ram_type;
 	
 	class ram_transaction;
 		bit rwb, auto_pre, act, reset, cs, cke, ras, cas;

@@ -17,7 +17,7 @@ program ram_env(ram_interface r);
 		   // repeat(5)
 			ramGen.run("write");
 		 end
-		else if ($test$plusargs("a_write"))
+		else if ($test$plusargs("write_a"))
 			ramGen.run("write_a");
 		else if ($test$plusargs("read"))
 			ramGen.run("read");
@@ -25,14 +25,6 @@ program ram_env(ram_interface r);
 			ramGen.run("read_a");
 		else if ($test$plusargs("w_precharge"))
 			ramGen.run("w_precharge");
-		else if ($test$plusargs("r_precharge"))
-			ramGen.run("r_precharge");
-		else if ($test$plusargs("w_reset"))
-			ramGen.run("w_reset");
-		else if ($test$plusargs("r_reset"))
-			ramGen.run("r_reset");
-		else if ($test$plusargs("self"))
-			ramGen.run("self");	
 		
 	end
 	

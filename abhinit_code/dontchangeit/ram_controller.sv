@@ -48,7 +48,7 @@ input bit [2:0] col_address;
 					ASSIGNING STATES BASED ON CLK_T
 -------------------------------------------------------------------------------*/
 
-	always_ff @(posedge rintf.clk_t )//or posedge rintf.clk_c)
+	always_ff @(posedge rintf.clk_t)
 	begin
 		if(rintf.reset == 1'b1)
 			current_state <= RESET;
@@ -94,39 +94,27 @@ input bit [2:0] col_address;
 						BANK1_3 : sense_amp <= bank1_3[rintf.row_address][7:0];
 						endcase	
 					  	
-					  	if(rintf.cs == 1'b1)
-					  	begin
-					      	if(rintf.rwb == 1'b1 && rintf.auto_pre == 1'b1)
-						    next_state <= WRITE_A;
-						    else if(rintf.rwb == 1'b1 && rintf.auto_pre == 1'b0)
-						    next_state <= WRITE;
-						    else if(rintf.rwb == 1'b0 && rintf.auto_pre == 1'b1)
-						    next_state <= READ_A;
-						    else
-						    next_state <= READ;	
-				      	end
-				      	else if(rintf.cs ==1'b0 && rintf.auto_pre == 1'b1)
-							next_state <= PRECHARGE;
-			  	    end
-			  	   end
+					  	if(rintf.rwb == 1'b1 && rintf.auto_pre == 1'b1)
+						next_state <= WRITE_A;
+						else if(rintf.rwb == 1'b1 && rintf.auto_pre == 1'b0)
+						next_state <= WRITE;
+						else if(rintf.rwb == 1'b0 && rintf.auto_pre == 1'b1)
+						next_state <= READ_A;
+						else
+						next_state <= READ;	
+				  	end
+			  	end
 	WRITE:	begin
 				sense_amp[rintf.col_address] <= rintf.datain;
-				
-				if(rintf.cs == 1'b1)
-				begin				
-				    if(rintf.rwb == 1'b1 && rintf.auto_pre == 1'b1)
-				    next_state <= WRITE_A;
-				    else if(rintf.rwb == 1'b1 && rintf.auto_pre == 1'b0)
-				    next_state <= WRITE;
-				    else if(rintf.rwb == 1'b0 && rintf.auto_pre == 1'b1)
-				    next_state <= READ_A;
-				    else
-				    next_state <= READ;
-				end
-				else if(rintf.cs ==1'b0 && rintf.auto_pre == 1'b1)
-							next_state <= PRECHARGE;
-							
-				
+								
+				if(rintf.rwb == 1'b1 && rintf.auto_pre == 1'b1)
+				next_state <= WRITE_A;
+				else if(rintf.rwb == 1'b1 && rintf.auto_pre == 1'b0)
+				next_state <= WRITE;
+				else if(rintf.rwb == 1'b0 && rintf.auto_pre == 1'b1)
+				next_state <= READ_A;
+				else
+				next_state <= READ;
 			end
 	
 	WRITE_A: begin
@@ -137,19 +125,14 @@ input bit [2:0] col_address;
 	READ:	begin
 				rintf.dataout <= sense_amp[rintf.col_address];
 				
-				if(rintf.cs == 1'b1)
-				begin	
-				    if(rintf.rwb == 1'b1 && rintf.auto_pre == 1'b1)
-				    next_state <= WRITE_A;
-				    else if(rintf.rwb == 1'b1 && rintf.auto_pre == 1'b0)
-				    next_state <= WRITE;
-				    else if(rintf.rwb == 1'b0 && rintf.auto_pre == 1'b1)
-				    next_state <= READ_A;
-				    else
-				    next_state <= READ;
-				end
-				else if(rintf.cs ==1'b0 && rintf.auto_pre == 1'b1)
-							next_state <= PRECHARGE;
+				if(rintf.rwb == 1'b1 && rintf.auto_pre == 1'b1)
+				next_state <= WRITE_A;
+				else if(rintf.rwb == 1'b1 && rintf.auto_pre == 1'b0)
+				next_state <= WRITE;
+				else if(rintf.rwb == 1'b0 && rintf.auto_pre == 1'b1)
+				next_state <= READ_A;
+				else
+				next_state <= READ;
 			end
 	
 	READ_A:	begin

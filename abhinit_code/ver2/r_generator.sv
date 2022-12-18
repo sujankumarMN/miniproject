@@ -46,52 +46,13 @@ endclass
 				rgen2mbox.put(rgen);
 			end
 
-			if(stringname=="w_precharge")
+			if(stringname=="pre_c")
 			begin
 				rgen = new;
-				rgen.rtype=w_precharge;
-				rgen.randomize();
+				rgen.rtype=pre_c;
 				$display("[GENERATOR] Precharge operation is in progress");
 				rgen2mbox.put(rgen);
 			end
-
-			if(stringname=="r_precharge")
-			begin
-				rgen = new;
-				rgen.rtype=r_precharge;
-				rgen.randomize();
-				$display("[GENERATOR] Precharge operation is in progress");
-				rgen2mbox.put(rgen);
-			end
-			
-			if(stringname=="w_reset")
-			begin
-				rgen = new;
-				rgen.rtype=w_reset;
-				rgen.randomize();
-				$display("[GENERATOR] Precharge operation is in progress");
-				rgen2mbox.put(rgen);
-			end
-			
-			
-			if(stringname=="r_reset")
-			begin
-				rgen = new;
-				rgen.rtype=r_reset;
-				rgen.randomize();
-				$display("[GENERATOR] Precharge operation is in progress");
-				rgen2mbox.put(rgen);
-			end
-			
-			if(stringname=="self")
-			begin
-				rgen = new;
-				rgen.rtype=self;
-				rgen.randomize();
-				$display("[GENERATOR] Precharge operation is in progress");
-				rgen2mbox.put(rgen);
-			end
-
 
 		end
 	endtask

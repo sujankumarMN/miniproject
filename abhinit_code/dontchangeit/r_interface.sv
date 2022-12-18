@@ -7,7 +7,7 @@ interface ram_interface(input cke,clk_t,clk_c); //input clk_t, input clk_c
 	logic [15:0]datain;	//NEED TO CHECK INOUT
 	logic [15:0]dataout;
 
-
+	//logic clk_t, clk_c;
 	//logic [15:0]sense_amp[7:0];
 
 	//logic [7:0]mem[127:0];
