@@ -152,11 +152,6 @@ task r_driver::send_to_dut(input ram_transaction ram_drive);//specify direction
 			ram_interface_driver.bank_grp=ram_drive.bank_grp;
 			ram_interface_driver.bank_no=ram_drive.bank_no;
 	    #10 ram_interface_driver.act=0;
-	    #30 ram_interface_driver.act=1;
-	        ram_interface_driver.reset=0;
-	        ram_interface_driver.cs=1;
-			ram_interface_driver.rwb=0;
-			ram_interface_driver.auto_pre=1;
 	        $display("[DRIVER] Read A operation is initiated. DATA_IN=%h, Row_Address=%h, Col_Address=%h DATA_OUT=%h",ram_interface_driver.datain,ram_interface_driver.row_address, ram_interface_driver.col_address,ram_interface_driver.dataout);
 		    end
 // ------------------------------------------ R E A D _ A (end) --------------------------------------------------------------//	 
@@ -457,7 +452,7 @@ task r_driver::send_to_dut(input ram_transaction ram_drive);//specify direction
 		    end
  // -------------------------------------------R W_B U R S T (end) ---------------------------------------------------------//        			
 	end
-#800 $finish;
+#200 $finish;
 endtask
 
 

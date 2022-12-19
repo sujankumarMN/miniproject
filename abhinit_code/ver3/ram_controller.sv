@@ -34,10 +34,9 @@ input bit [2:0] col_address;
 	
 	bit [2:0] i;
 	//bit [2:0] j;
-	bit refresh_start = 1'b0;
-	bit [7:0] refresh_counter;		
 	
-	typedef enum bit [3:0] {RESET, IDLE, ACTIVATE, INITIALIZE, WRITE, WRITE_A, READ, READ_A, PRECHARGE,REFRESH} State; //REFRESH?
+	
+	typedef enum bit [3:0] {RESET, IDLE, ACTIVATE, INITIALIZE, WRITE, WRITE_A, READ, READ_A, PRECHARGE} State; //REFRESH?
 	State current_state, next_state;
 
 	typedef enum bit [2:0] {BANK0_0, BANK0_1, BANK0_2, BANK0_3, BANK1_0, BANK1_1, BANK1_2, BANK1_3} Bank_State;
@@ -63,19 +62,8 @@ input bit [2:0] col_address;
 			current_bank <= next_bank;			
 			end
 	end	
-/*-------------------------------------------------------------------------------
-					  REFRESH COUNTER GENERATION
--------------------------------------------------------------------------------*/
-	always @(posedge rintf.clk_t or posedge rintf.clk_c)
-	begin
-		if(refresh_counter == 7'b1000000)										//WHEN REFRESH REACHES 32ms REFRESH STATE IS INITIATED
-				refresh_start = 1'b1;
-		else
-			refresh_counter = refresh_counter + 1'b1;							//INCREMENT COUNT UNTIL REFRESH REACHES 32ms
-	end
-/*-------------------------------------------------------------------------------
-					  		NAVIGATING FSM
--------------------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------------------*/
 
 
 	always@(*)
@@ -91,12 +79,7 @@ input bit [2:0] col_address;
 				end
 
 	IDLE: 	begin
-	        if(refresh_start == 1'b1)
-				begin
-					$display("in idle and refresh_next");
-					next_state <= REFRESH;
-				end
-			else if(rintf.act == 1'b1)
+			if(rintf.act == 1'b1)
 				next_state <= ACTIVATE;
 			end
 
@@ -247,17 +230,6 @@ input bit [2:0] col_address;
 				endcase	
 				next_state <= IDLE;
 				end
-				
-	REFRESH: begin
-			 	repeat(5) 
-			 		begin
-			 		@(posedge rintf.clk_t or posedge rintf.clk_c)
-			 			$display("REFRESH STATE in progress");
-			 		end
-		 		refresh_start <= 1'b0;
-	 			refresh_counter <= 7'b0000000;
-			 	next_state <= IDLE;
-			 end
 	endcase		
 	end	
 endmodule 

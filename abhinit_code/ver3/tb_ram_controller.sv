@@ -27,6 +27,6 @@ module tb_ram_controller();
     ram_env renv(rintf);
 
   initial begin
-    #800 $finish;
+    #200 $finish;
   end
 endmodule	
