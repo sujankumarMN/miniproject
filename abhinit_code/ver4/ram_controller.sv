@@ -47,7 +47,7 @@ input bit [2:0] col_address;
 					ASSIGNING STATES BASED ON CLK_T
 -------------------------------------------------------------------------------*/
 
-	always_ff @(posedge rintf.clk_t or posedge rintf.clk_c)
+	always_ff @(posedge rintf.clk_t)// or posedge rintf.clk_c)
 	begin
 		if(rintf.reset == 1'b1)
 			current_state <= RESET;
@@ -60,7 +60,7 @@ input bit [2:0] col_address;
 /*-------------------------------------------------------------------------------
 					  REFRESH COUNTER GENERATION
 -------------------------------------------------------------------------------*/
-	always @(posedge rintf.clk_t or posedge rintf.clk_c)
+	always @(posedge rintf.clk_t)// or posedge rintf.clk_c)
 	begin
 		if(refresh_counter == 7'b1000000)										//WHEN REFRESH REACHES 32ms REFRESH STATE IS INITIATED
 				refresh_start = 1'b1;
@@ -140,7 +140,7 @@ input bit [2:0] col_address;
 				    1'b1:	begin
 							    for(i=3'b000;i<rintf.burst_len;i++)
 							    begin
-								    @(posedge rintf.clk_t or posedge rintf.clk_c)
+								    @(posedge rintf.clk_t)// or posedge rintf.clk_c)
 								    sense_amp[rintf.col_address + i] <= rintf.datain;
 							    end
 						    end
@@ -173,7 +173,7 @@ input bit [2:0] col_address;
 				    1'b1:	begin
 							    for(i=3'b000;i<rintf.burst_len;i++)
 							    begin
-								    @(posedge rintf.clk_t or posedge rintf.clk_c)
+								    @(posedge rintf.clk_t)// or posedge rintf.clk_c)
 								    sense_amp[rintf.col_address + i] <= rintf.datain;
 								    $display("WRITE-A HERE inside 1");
 							    end
@@ -193,7 +193,7 @@ input bit [2:0] col_address;
 				    1'b1:	begin
 							    for(i=3'b000;i<rintf.burst_len;i++)
 							    begin
-								    @(posedge rintf.clk_t or posedge rintf.clk_c)
+								    @(posedge rintf.clk_t )//or posedge rintf.clk_c)
 								    rintf.dataout <= sense_amp[rintf.col_address+i];
 							    end
 						    end	
@@ -218,7 +218,7 @@ input bit [2:0] col_address;
 			 1'b1:begin
 					for(i=3'b000;i<rintf.burst_len;i++)
 					begin
-						@(posedge rintf.clk_t or posedge rintf.clk_c)
+						@(posedge rintf.clk_t )//or posedge rintf.clk_c)
 						rintf.dataout <= sense_amp[rintf.col_address+i];
 					end
 				  end
@@ -245,7 +245,7 @@ input bit [2:0] col_address;
 	REFRESH: begin
 			 	repeat(5) 
 			 		begin
-			 		@(posedge rintf.clk_t or posedge rintf.clk_c)
+			 		@(posedge rintf.clk_t)// or posedge rintf.clk_c)
 			 			$display("REFRESH STATE in progress");
 			 		end
 		 		refresh_start <= 1'b0;

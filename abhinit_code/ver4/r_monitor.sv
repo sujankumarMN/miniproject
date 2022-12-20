@@ -31,7 +31,7 @@ endclass
  task r_monitor::run();
   begin
       rmon = new;
-        begin
+       begin
           @(posedge ram_interface_monitor.clk_t or posedge ram_interface_monitor.clk_c)
       
            rmon.row_address=ram_interface_monitor.row_address;

@@ -14,13 +14,13 @@ endclass
 
 task r_driver::run();
 		rdrv=new;
-		@(posedge ram_interface_driver.clk_t or posedge ram_interface_driver.clk_c)
+		@(posedge ram_interface_driver.clk_t)// or posedge ram_interface_driver.clk_c)
 			mbox2drv.get(rdrv);
 			send_to_dut(rdrv);
 endtask
   
 task r_driver::send_to_dut(input ram_transaction ram_drive);//specify direction
-	@(posedge ram_interface_driver.clk_t or posedge ram_interface_driver.clk_c)
+	@(posedge ram_interface_driver.clk_t)// or posedge ram_interface_driver.clk_c)
 	begin
  // ------------------------------------------ W R I T E (start) --------------------------------------------------------------//		
 		if(ram_drive.rtype== write)

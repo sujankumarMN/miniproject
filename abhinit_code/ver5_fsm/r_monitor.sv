@@ -32,7 +32,7 @@ endclass
   begin
       rmon = new;
         begin
-          @(posedge ram_interface_monitor.clk_t or posedge ram_interface_monitor.clk_c)
+          @(posedge ram_interface_monitor.clk_t)// or posedge ram_interface_monitor.clk_c)
       
            rmon.row_address=ram_interface_monitor.row_address;
            rmon.col_address=ram_interface_monitor.col_address;

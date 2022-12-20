@@ -14,13 +14,13 @@ endclass
 
 task r_driver::run();
 		rdrv=new;
-		@(posedge ram_interface_driver.clk_t or posedge ram_interface_driver.clk_c)
+		@(posedge ram_interface_driver.clk_t)// or posedge ram_interface_driver.clk_c)
 			mbox2drv.get(rdrv);
 			send_to_dut(rdrv);
 endtask
   
 task r_driver::send_to_dut(input ram_transaction ram_drive);//specify direction
-	@(posedge ram_interface_driver.clk_t or posedge ram_interface_driver.clk_c)
+	@(posedge ram_interface_driver.clk_t)// or posedge ram_interface_driver.clk_c)
 	begin
  // ------------------------------------------ W R I T E (start) --------------------------------------------------------------//		
 		if(ram_drive.rtype== write)
@@ -449,46 +449,16 @@ task r_driver::send_to_dut(input ram_transaction ram_drive);//specify direction
 		         ram_interface_driver.cs=1;
 		        #30;
 		         //for fsm//
-		         /*
+		         
 		        #30
-		         ram_interface_driver.burst_mode=0;
 		        ram_interface_driver.auto_pre=1;
 		        ram_interface_driver.cs=0;
-		        ram_interface_driver.act=1;
-		        #30
-		        ram_interface_driver.cs=1;
-		        ram_interface_driver.rwb=1;
-		        #20	        
-		       
-		        ram_interface_driver.rwb=0;
-		        #60
 		        ram_interface_driver.act=0;
-		        //change point
-		        #30
-		        ram_interface_driver.auto_pre=0;
-		        ram_interface_driver.act=1;
-		        #10
-		        ram_interface_driver.auto_pre=1;
-		        #20
-		        ram_interface_driver.auto_pre=0;
-		        ram_interface_driver.rwb=0;
-		        #30
-		        ram_interface_driver.cs=0;
-		        ram_interface_driver.auto_pre=1;
-		        #50
-		        ram_interface_driver.cs=1;
-		        ram_interface_driver.auto_pre=1;
-		        ram_interface_driver.rwb=1;
-		        #80
-		        ram_interface_driver.auto_pre=0;
-		        #50
-		        ram_interface_driver.cs=0;
-		        ram_interface_driver.auto_pre=1;
-		        #10
-		        ram_interface_driver.act=0;
-		        #750;
-		        */
-		     
+		        //#10
+		        
+		        #350;
+		        
+		      /**/  
 		    end
  // -------------------------------------------R W_B U R S T (end) ---------------------------------------------------------//  
  
