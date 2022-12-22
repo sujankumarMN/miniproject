@@ -446,7 +446,12 @@ task r_driver::send_to_dut(input ram_transaction ram_drive);//specify direction
 		        ram_interface_driver.act=1;
 		        $display("time: %0t [DRIVER] Read - write  operation is initiated. DATA_IN=%h, Row_Address=%h, Col_Address=%h DATA_OUT=%h",$time,ram_interface_driver.datain,ram_interface_driver.row_address, ram_interface_driver.col_address,ram_interface_driver.dataout);
 		        #3
-		         ram_interface_driver.cs=1;
+		        ram_interface_driver.cs=1;
+		        #30
+		        ram_interface_driver.burst_mode=0;
+		        ram_interface_driver.auto_pre=1;
+		        ram_interface_driver.cs=0;
+		        ram_interface_driver.act=1;
 		        #30;
 		         //for fsm//
 		         /*
@@ -560,7 +565,8 @@ task r_driver::send_to_dut(input ram_transaction ram_drive);//specify direction
 			#30;
 		end
  // ------------------------------------------ S E L F _ T E S T [write -->precharge, write_a, read, read_a] (end) ------------//
-       			
+ 
+
 	end
 //#450 $finish;
 endtask
@@ -589,14 +595,24 @@ endtask
 
 
 
-/*if(ram_drive.rtype == reset)
-			begin 
-				#10 ram_interface_driver.cs=1;
-				ram_interface_driver.we=1;
-				ram_interface_driver.data_in=ram_drive.data_in;
-				ram_interface_driver.address=ram_drive.address;#20;
-				#10 ram_interface_driver.reset=1;
-				ram_interface_driver.we=0; #50;
-				$display("[DRIVER] Reset operation is initiated");
-			end*/
-	
+ //-------------------------------------------- buf---------------------------------------------------------------------------//
+        /*if(ram_drive.rtype == buffer)
+        begin
+            #10
+            ram_interface_driver.rwb=1;
+			ram_interface_driver.auto_pre=0;
+			ram_interface_driver.act=1;
+			ram_interface_driver.burst_mode=1;
+			ram_interface_driver.cs=1;
+			ram_interface_driver.row_address=ram_drive.row_address;
+			ram_interface_driver.col_address=ram_drive.col_address;
+			ram_interface_driver.bank_grp=ram_drive.bank_grp;
+			ram_interface_driver.bank_no=ram_drive.bank_no;
+			ram_interface_driver.datain=ram_drive.datain;
+			ram_interface_driver.burst_len=ram_drive.burst_len;
+			#2
+			ram_interface_driver.burst_mode=0;
+			#50;
+			
+		end*/
+       			

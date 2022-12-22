@@ -12,6 +12,7 @@ endclass
 		begin
 			if(stringname=="write")
 			begin
+			   // repeat(5)
 				rgen = new;
 				rgen.rtype=write;
 				rgen.randomize();
@@ -94,11 +95,15 @@ endclass
 			
 			if(stringname=="w_burst")
 			begin
-				rgen = new;
-				rgen.rtype=w_burst;
-				rgen.randomize();
-				$display("time: %0t [GENERATOR] BURST write operation is in progress",$time);
-				rgen2mbox.put(rgen);
+			    //repeat(4)
+			   // begin
+				    rgen = new;
+				    rgen.rtype=w_burst;
+				    rgen.randomize();
+				  
+				    $display("time: %0t [GENERATOR] BURST write operation is in progress",$time);
+				    rgen2mbox.put(rgen);
+				//end
 			end
 			
 			if(stringname=="r_burst")
@@ -118,7 +123,6 @@ endclass
 				$display("time: %0t [GENERATOR] RW_BURST operation is in progress",$time);
 				rgen2mbox.put(rgen);
 			end
-
-
+			
 		end
 	endtask

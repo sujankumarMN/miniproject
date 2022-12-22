@@ -37,6 +37,8 @@ program ram_env(ram_interface r);
 			ramGen.run("r_burst");	
 		else if ($test$plusargs("wr_burst"))
 			ramGen.run("rw_burst");	
+		else if ($test$plusargs("buffer"))
+			ramGen.run("buffer");	
 		else if ($test$plusargs("self"))
 			ramGen.run("self");			
 		
@@ -44,12 +46,19 @@ program ram_env(ram_interface r);
 	
 	initial begin
 	  //  @(posedge r.clk_c or r.clk_t)
-	  //repeat(10)
-	    //fork
+	 // repeat(10)
+	    fork
 		
 	    ramDrv.run();
 	    ramMon.run();
 	    ramSb.run();
-	   // join
+	    join
 	end
+	
+	initial begin
+	    #400
+	    ramSb.data_check();
+	    $exit;
+	end
+	
 endprogram

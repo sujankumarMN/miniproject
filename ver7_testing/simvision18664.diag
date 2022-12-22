@@ -1,0 +1,95 @@
+*** Message Type: info ***
+When: Wed Dec 21 05:28:27 PM IST 2022
+SimVision started.
+Version: TOOL:  simvision(64)   15.20-s086
+User: MSIS
+Host: localhost
+Platform: Linux/x86_64/3.10.0-1062.el7.x86_64
+Started: Wed Dec 21 05:28:27 PM IST 2022
+Command: /home/installs/INCISIVE152/tools.lnx86/simvision/bin/64bit/simvision.exe -connect dc:localhost:34035 -64BIT -nocopyright
+Work Directory: /home/MSIS/Documents/basanth/Project/abhinit_code/ver7_testing
+ 
+*** Message Type: info ***
+When: Wed Dec 21 05:28:27 PM IST 2022
+Create browser window: "Design Browser 1"
+ 
+*** Message Type: info ***
+When: Wed Dec 21 05:28:31 PM IST 2022
+Create console window: "Console"
+ 
+*** Message Type: info ***
+When: Wed Dec 21 05:28:33 PM IST 2022
+Connect to Simulator
+      Design: worklib.tb_ram_controller:sv
+   Languages: verilog
+   Simulator: NC-Sim
+     Version: TOOL:       ncsim(64)       15.20-s086
+        User: MSIS
+        Host: localhost
+Time Started: Wed Dec 21 05:28:26 PM IST 2022
+  Process ID: 18645
+   Directory: /home/MSIS/Documents/basanth/Project/abhinit_code/ver7_testing
+     Command: irun +access+rwc tb_ram_controller.sv +wr_burst +gui
+
+ 
+*** Message Type: info ***
+When: Wed Dec 21 05:28:33 PM IST 2022
+Create utility window: "Properties"
+ 
+*** Message Type: info ***
+When: Wed Dec 21 05:28:37 PM IST 2022
+Create waveform window: "Waveform 1"
+ 
+*** Message Type: info ***
+When: Wed Dec 21 05:32:20 PM IST 2022
+Delete waveform window: "Waveform 1"
+ 
+*** Message Type: info ***
+When: Wed Dec 21 09:44:40 PM IST 2022
+Exit NC-Sim: user
+      Design: worklib.tb_ram_controller:sv
+   Languages: verilog
+   Simulator: NC-Sim
+     Version: TOOL:       ncsim(64)       15.20-s086
+        User: MSIS
+        Host: localhost
+Time Started: Wed Dec 21 05:28:26 PM IST 2022
+  Process ID: 18645
+   Directory: /home/MSIS/Documents/basanth/Project/abhinit_code/ver7_testing
+     Command: irun +access+rwc tb_ram_controller.sv +wr_burst +gui
+
+ 
+*** Message Type: error ***
+When: Wed Dec 21 09:44:40 PM IST 2022
+NC-Sim Crashed:
+      Design: worklib.tb_ram_controller:sv
+   Languages: verilog
+   Simulator: NC-Sim
+     Version: TOOL:       ncsim(64)       15.20-s086
+        User: MSIS
+        Host: localhost
+Time Started: Wed Dec 21 05:28:26 PM IST 2022
+  Process ID: 18645
+   Directory: /home/MSIS/Documents/basanth/Project/abhinit_code/ver7_testing
+     Command: irun +access+rwc tb_ram_controller.sv +wr_burst +gui
+      Design: worklib.tb_ram_controller:sv
+   Languages: verilog
+   Simulator: NC-Sim
+     Version: TOOL:       ncsim(64)       15.20-s086
+        User: MSIS
+        Host: localhost
+Time Started: Wed Dec 21 05:28:26 PM IST 2022
+  Process ID: 18645
+   Directory: /home/MSIS/Documents/basanth/Project/abhinit_code/ver7_testing
+     Command: irun +access+rwc tb_ram_controller.sv +wr_burst +gui
+
+Outstanding STRAP Requests:
+        strap::reinvoke savestate /home/MSIS/Documents/basanth/Project/abhinit_code/ver7_testing/.simvision/18664_MSIS_vl-09_autosave.tcl {# NC-Sim Command File
+# TOOL:   ncsim(64)       15.20-s086
+#
+} {simvision -input /home/MSIS/Documents/basanth/Project/abhinit_code/ver7_testing/.simvision/18664_MSIS_vl-09_autosave.tcl.svcf}
+ 
+*** Message Type: info ***
+When: Wed Dec 21 09:44:46 PM IST 2022
+SimVision Exit.
+ 
